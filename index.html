@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Para Andreita</title>
+  
+  <!-- Tipografías elegantes desde Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Fondo animado sutil -->
+  <canvas id="ambientCanvas"></canvas>
+
+  <main class="viewport-center">
+    <article class="card">
+      <span class="dedication-tag">Para el amor de mi vida</span>
+
+      <!-- Frase inicial de ánimo en el centro exacto -->
+      <section class="welcome-container">
+        <blockquote class="welcome-text" id="welcomeQuote">
+          <!-- Se rellena automáticamente con una frase de ánimo al cargar -->
+        </blockquote>
+      </section>
+
+      <div class="divider">
+        <span class="divider-line"></span>
+        <span class="divider-symbol">&mdash; &loz; &mdash;</span>
+        <span class="divider-line"></span>
+      </div>
+
+      <!-- Botón para descubrir las razones -->
+      <button class="btn-action" id="reasonBtn" type="button">
+        Descubrir una razón
+      </button>
+
+      <!-- Espacio donde aparece cada razón -->
+      <section class="reason-display" id="reasonDisplay" aria-live="polite">
+        <div class="reason-header">
+          <span class="reason-badge" id="reasonCounter">Razón 1 de 200</span>
+        </div>
+        <div class="reason-content" id="reasonText">
+          <!-- Texto de la razón seleccionada -->
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <script src="js/contenido.js"></script>
+</body>
+</html>

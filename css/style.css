@@ -1,0 +1,245 @@
+:root {
+    --bg-start: #fbf5f7;
+    --bg-mid: #f6ecf1;
+    --bg-end: #eee1e9;
+    --card-bg: rgba(255, 255, 255, 0.72);
+    --card-border: rgba(255, 255, 255, 0.9);
+    --card-shadow: 0 25px 60px -15px rgba(135, 75, 105, 0.15), 0 10px 25px -10px rgba(0, 0, 0, 0.04);
+    --text-main: #2b1b24;
+    --text-muted: #7d6573;
+    --accent-deep: #78385b;
+    --accent-hover: #5e2846;
+    --accent-subtle: #eedde6;
+    --accent-glow: rgba(120, 56, 91, 0.18);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle at 50% 20%, var(--bg-start), var(--bg-mid) 50%, var(--bg-end) 100%);
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    color: var(--text-main);
+    overflow-x: hidden;
+    position: relative;
+    padding: 1.5rem;
+}
+
+/* Fondo animado de luces tenues y partículas delicadas */
+#ambientCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Contenedor principal centrado */
+.viewport-center {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 650px;
+    margin: auto;
+}
+
+/* Tarjeta estética flotante con efecto cristal */
+.card {
+    background: var(--card-bg);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border: 1px solid var(--card-border);
+    border-radius: 28px;
+    padding: 3.25rem 2.75rem;
+    box-shadow: var(--card-shadow);
+    text-align: center;
+    opacity: 0;
+    transform: translateY(22px);
+    animation: smoothEntrance 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    transition: box-shadow 0.4s ease;
+}
+
+.card:hover {
+    box-shadow: 0 30px 70px -15px rgba(135, 75, 105, 0.2), 0 12px 28px -8px rgba(0, 0, 0, 0.05);
+}
+
+@keyframes smoothEntrance {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Encabezado sutil */
+.dedication-tag {
+    display: inline-block;
+    text-transform: uppercase;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.28em;
+    color: var(--accent-deep);
+    background: var(--accent-subtle);
+    padding: 0.45rem 1.15rem;
+    border-radius: 999px;
+    margin-bottom: 2rem;
+}
+
+/* Mensaje de bienvenida y ánimo */
+.welcome-container {
+    margin-bottom: 2rem;
+    min-height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.welcome-text {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.65rem;
+    line-height: 1.5;
+    font-weight: 400;
+    color: var(--text-main);
+    font-style: italic;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* Separador sutil */
+.divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin: 1.8rem 0 2.2rem;
+    opacity: 0.6;
+}
+
+.divider-line {
+    height: 1px;
+    width: 50px;
+    background: linear-gradient(90deg, transparent, var(--accent-deep), transparent);
+}
+
+.divider-symbol {
+    font-size: 0.7rem;
+    color: var(--accent-deep);
+    letter-spacing: 0.2em;
+}
+
+/* Botón de razones */
+.btn-action {
+    position: relative;
+    background: linear-gradient(135deg, var(--accent-deep), #8f446e);
+    color: #ffffff;
+    border: none;
+    padding: 0.95rem 2.25rem;
+    font-size: 0.92rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    border-radius: 999px;
+    cursor: pointer;
+    box-shadow: 0 8px 24px var(--accent-glow);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    outline: none;
+}
+
+.btn-action:hover {
+    background: linear-gradient(135deg, var(--accent-hover), #78355b);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(120, 56, 91, 0.28);
+}
+
+.btn-action:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 14px var(--accent-glow);
+}
+
+/* Contenedor de la razón activa */
+.reason-display {
+    margin-top: 2rem;
+    padding-top: 1.75rem;
+    border-top: 1px solid rgba(120, 56, 91, 0.1);
+    display: none;
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.reason-display.visible {
+    display: block;
+}
+
+.reason-display.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.reason-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.9rem;
+}
+
+.reason-badge {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.reason-content {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.45rem;
+    line-height: 1.5;
+    color: var(--accent-deep);
+    font-weight: 600;
+    padding: 0 0.5rem;
+    min-height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.content-fade-out {
+    opacity: 0;
+    transform: translateY(8px);
+}
+
+.content-fade-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Adaptabilidad a dispositivos móviles */
+@media (max-width: 600px) {
+    .card {
+        padding: 2.5rem 1.5rem;
+        border-radius: 22px;
+    }
+
+    .welcome-text {
+        font-size: 1.4rem;
+    }
+
+    .reason-content {
+        font-size: 1.25rem;
+    }
+
+    .btn-action {
+        width: 100%;
+        padding: 0.9rem 1.5rem;
+    }
+}
